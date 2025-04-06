@@ -229,10 +229,10 @@ body {
 
 /* Hero Section com efeitos geométricos */
 .hero-section {
-    padding-top: 100px;
+    padding: 0;
     background: linear-gradient(135deg, 
-        rgba(9, 37, 67, 0.92) 0%,
-        rgba(32, 34, 53, 0.85) 100%
+        rgba(9, 37, 67, 0.75) 0%,
+        rgba(32, 34, 53, 0.70) 100%
     ), url('../assets/background_hero.jpg') no-repeat center center;
     background-size: cover;
     position: relative;
@@ -240,6 +240,89 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+    padding: 4rem 1rem;
+}
+
+.hero-section h1 {
+    color: white;
+    font-size: 3.8rem;
+    font-weight: 700;
+    margin-bottom: 1.8rem;
+    line-height: 1.2;
+}
+
+.hero-section .lead {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.35rem;
+    margin-bottom: 2.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-section .btn-primary {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 991.98px) {
+    .hero-section h1 {
+        font-size: 3.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-section .lead {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-section .btn-primary {
+        padding: 0.9rem 2.2rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .hero-section .lead {
+        font-size: 1.1rem;
+        margin-bottom: 1.8rem;
+    }
+
+    .hero-section .btn-primary {
+        padding: 0.8rem 2rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-section h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-section .lead {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-section .btn-primary {
+        padding: 0.8rem 1.8rem;
+        font-size: 0.95rem;
+    }
 }
 
 /* Formas geométricas animadas */
@@ -251,8 +334,8 @@ body {
     width: 600px;
     height: 600px;
     background: linear-gradient(45deg, 
-        rgba(0, 173, 240, 0.15) 0%,
-        rgba(0, 173, 240, 0.05) 100%
+        rgba(0, 173, 240, 0.10) 0%,
+        rgba(0, 173, 240, 0.03) 100%
     );
     border-radius: 86px;
     transform: rotate(45deg);
@@ -268,12 +351,61 @@ body {
     width: 800px;
     height: 800px;
     background: linear-gradient(225deg,
-        rgba(61, 94, 128, 0.15) 0%,
-        rgba(61, 94, 128, 0.05) 100%
+        rgba(61, 94, 128, 0.10) 0%,
+        rgba(61, 94, 128, 0.03) 100%
     );
     border-radius: 100px;
     transform: rotate(-30deg);
     animation: float 25s infinite ease-in-out reverse;
+    pointer-events: none;
+}
+
+/* Novas formas geométricas */
+.hero-section .hexagon {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    width: 200px;
+    height: 230px;
+    background: linear-gradient(135deg,
+        rgba(0, 173, 240, 0.08) 0%,
+        rgba(9, 37, 67, 0.05) 100%
+    );
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    animation: floatRotate 18s infinite ease-in-out;
+    pointer-events: none;
+}
+
+.hero-section .triangle {
+    content: '';
+    position: absolute;
+    bottom: 20%;
+    right: 15%;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(225deg,
+        rgba(32, 34, 53, 0.08) 0%,
+        rgba(61, 94, 128, 0.05) 100%
+    );
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    animation: floatRotate 15s infinite ease-in-out reverse;
+    pointer-events: none;
+}
+
+.hero-section .diamond {
+    content: '';
+    position: absolute;
+    top: 40%;
+    right: 25%;
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(90deg,
+        rgba(0, 173, 240, 0.07) 0%,
+        rgba(61, 94, 128, 0.04) 100%
+    );
+    transform: rotate(45deg);
+    animation: pulse 8s infinite ease-in-out;
     pointer-events: none;
 }
 
@@ -310,57 +442,29 @@ body {
     }
 }
 
+@keyframes floatRotate {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(20px, -15px) rotate(5deg);
+    }
+    50% {
+        transform: translate(-10px, 20px) rotate(-5deg);
+    }
+    75% {
+        transform: translate(-15px, -10px) rotate(3deg);
+    }
+}
+
 @keyframes pulse {
     0%, 100% {
-        transform: scale(1);
+        transform: rotate(45deg) scale(1);
         opacity: 0.5;
     }
     50% {
-        transform: scale(1.1);
+        transform: rotate(45deg) scale(1.1);
         opacity: 0.8;
-    }
-}
-
-/* Ajustes de conteúdo do hero */
-.hero-section h1 {
-    color: white;
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    position: relative;
-    z-index: 1;
-}
-
-.hero-section .lead {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    position: relative;
-    z-index: 1;
-}
-
-.hero-section .btn-primary {
-    position: relative;
-    z-index: 1;
-    padding: 0.8rem 2rem;
-    font-weight: 500;
-    text-transform: none;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
-}
-
-.hero-section .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-@media (max-width: 768px) {
-    .hero-section h1 {
-        font-size: 2.5rem;
-    }
-    
-    .hero-section .lead {
-        font-size: 1.1rem;
     }
 }
 
@@ -526,6 +630,27 @@ body {
         bottom: 10%;
         left: 5%;
     }
+
+    .hero-section .hexagon {
+        width: 150px;
+        height: 173px;
+        top: 10%;
+        left: 5%;
+    }
+
+    .hero-section .triangle {
+        width: 120px;
+        height: 120px;
+        bottom: 15%;
+        right: 10%;
+    }
+
+    .hero-section .diamond {
+        width: 100px;
+        height: 100px;
+        top: 35%;
+        right: 20%;
+    }
 }
 
 @media (max-width: 767.98px) {
@@ -574,6 +699,21 @@ body {
     .hero-section .circle-2 {
         width: 120px;
         height: 120px;
+    }
+
+    .hero-section .hexagon {
+        width: 100px;
+        height: 115px;
+    }
+
+    .hero-section .triangle {
+        width: 80px;
+        height: 80px;
+    }
+
+    .hero-section .diamond {
+        width: 70px;
+        height: 70px;
     }
 
     .navbar-toggler {
@@ -639,6 +779,24 @@ body {
         width: 100px;
         height: 100px;
         opacity: 0.5;
+    }
+
+    .hero-section .hexagon {
+        width: 100px;
+        height: 100px;
+        opacity: 0.7;
+    }
+
+    .hero-section .triangle {
+        width: 70px;
+        height: 70px;
+        opacity: 0.7;
+    }
+
+    .hero-section .diamond {
+        width: 60px;
+        height: 60px;
+        opacity: 0.7;
     }
 }
 
@@ -1245,12 +1403,21 @@ body {
     animation: float 6s infinite ease-in-out;
 }
 
-.about-icon-container i {
-    font-size: 8rem;
-    color: var(--secondary-color);
+.about-icon-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-logo {
+    height: 140px;
     position: relative;
     z-index: 2;
-    animation: float 6s infinite ease-in-out;
+    filter: brightness(0) invert(0.15) sepia(100%) saturate(1000%) hue-rotate(175deg) brightness(0.8);
+    transition: all 0.3s ease;
 }
 
 .hero-icon-circle, .about-icon-circle {
@@ -1271,11 +1438,45 @@ body {
 }
 
 .about-icon-circle {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    z-index: 1;
     background: linear-gradient(135deg,
-        rgba(0, 173, 240, 0.1) 0%,
-        rgba(9, 37, 67, 0.1) 100%
+        var(--secondary-color) 0%,
+        var(--primary-color) 100%
     );
-    border: 2px solid rgba(0, 173, 240, 0.2);
+    opacity: 0.15;
+    border: 2px solid var(--secondary-color);
+    animation: pulseAndRotate 8s infinite ease-in-out;
+    clip-path: polygon(0 25%, 50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%);
+    transform-origin: center;
+}
+
+@keyframes pulseAndRotate {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        background: linear-gradient(135deg,
+            var(--secondary-color) 0%,
+            var(--primary-color) 100%
+        );
+        clip-path: polygon(0 25%, 50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%);
+    }
+    50% {
+        transform: scale(1.1) rotate(30deg);
+        background: linear-gradient(135deg,
+            var(--primary-color) 0%,
+            var(--secondary-color) 100%
+        );
+        clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+    }
+}
+
+.about-icon-container:hover .about-icon-circle {
+    animation-play-state: paused;
+    transform: scale(1.05);
+    opacity: 0.2;
+    box-shadow: 0 0 40px rgba(0, 173, 240, 0.25);
 }
 
 @media (max-width: 991.98px) {
@@ -1289,8 +1490,12 @@ body {
     }
 
     .hero-icon-circle, .about-icon-circle {
-        width: 220px;
-        height: 220px;
+        width: 200px;
+        height: 200px;
+    }
+
+    .about-logo {
+        height: 120px;
     }
 }
 
@@ -1304,7 +1509,11 @@ body {
     }
 
     .hero-icon-circle, .about-icon-circle {
-        width: 180px;
-        height: 180px;
+        width: 160px;
+        height: 160px;
+    }
+
+    .about-logo {
+        height: 100px;
     }
 } 
